@@ -13,6 +13,7 @@ Multi-Platform ASCII Player là một project nhỏ để phát các video trên
 
 - [x] Hỗ trợ màu sắc trong ASCII art.
 - [x] Tối ưu hóa performance cho terminal lớn.(dù chưa thực sự tối ưu được nhiều)
+- [ ] Thêm mục tìm kiếm đa nền tảng(hiện tại sẽ chưa develop do tài khoản của tôi là tài khoản được giám sát nên không thể tạo API cho YouTube,nhưng sẽ có thể develop trước cho 1 số nền tảng khác).
 - [ ] Viết hướng dẫn cài đặt và sử dụng chi tiết.
 
 ## Usage
