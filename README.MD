@@ -37,3 +37,5 @@ Multi-Platform ASCII Player là một project nhỏ để phát các video trên
                             Use only the specified character for ASCII art
                             (overrides --block).Requires --color.
 ```
+
+Notes:Nên chạy compile_all.py trước khi chạy main.py để có hiệu năng tốt nhất.
