@@ -17,9 +17,9 @@ def parse_args():
         "--color",
         dest="color",
         action="store_true",
-        help="Enable colored ASCII art.If enabled, it will automatically use '█' character and ignore --block",
+        help="Enable colored ASCII art.If enabled, it will automatically use '█' or only-char and ignore --block",
     )
-    parser.add_argument("--only-char", help="Use only the specified character for ASCII art (overrides --block).If use 1 character, it will automatically set color mode.")
+    parser.add_argument("--only-char", help="Use only the specified character for ASCII art (overrides --block).Requires --color.")
     return parser.parse_args()
 
 def print_centered_ascii(ascii_art, term_width, term_height):
