@@ -2,25 +2,46 @@ import argparse
 import re
 import shutil
 from core.renderer import render_image
+
 ansi_escape = re.compile(r"\x1b\[[0-9;]*m")
+
 
 def visible_length(s):
     return len(ansi_escape.sub("", s))
 
+
 def parse_args():
-    parser = argparse.ArgumentParser(description="Play Video from url in ASCII art with audio playback.")
+    parser = argparse.ArgumentParser(
+        description="Play Video from url in ASCII art with audio playback."
+    )
     parser.add_argument("--vid", required=True, help="Video (can be URL or file path)")
     parser.add_argument("--audio", action="store_true", help="Play audio from video")
     parser.add_argument("--invert", action="store_true", help="Invert ASCII colors")
-    parser.add_argument("--block", action="store_true", help="Use block characters for ASCII art")
+    parser.add_argument(
+        "--block", action="store_true", help="Use block characters for ASCII art"
+    )
     parser.add_argument(
         "--color",
         dest="color",
         action="store_true",
         help="Enable colored ASCII art.If enabled, it will automatically use '█' or only-char and ignore --block",
     )
-    parser.add_argument("--only-char", help="Use only the specified character for ASCII art (overrides --block).Requires --color.")
+    parser.add_argument(
+        "--only-char",
+        help="Use only the specified character for ASCII art (overrides --block).Requires --color.",
+    )
+    parser.add_argument(
+        "--square", help="Square pixel by multiple characters", action="store_true"
+    )
+    parser.add_argument(
+        "-s",
+        "--size",
+        help="Resolution of characters(for --square to make pixel square)",
+        type=str,
+        default="8x16",
+    )
     return parser.parse_args()
+
 
 def print_centered_ascii(ascii_art, term_width, term_height):
     lines = ascii_art.splitlines()
@@ -36,10 +57,12 @@ def print_centered_ascii(ascii_art, term_width, term_height):
     for line in lines:
         print(" " * pad_left + line)
 
+
 def get_size():
     size = shutil.get_terminal_size()
     return size.columns, size.lines
 
-def draw_frame(art,max_width, max_height):
+
+def draw_frame(art, max_width, max_height):
     print("\033[H", end="")
     print_centered_ascii(art, max_width, max_height)

@@ -2,10 +2,13 @@ from urllib.parse import urlparse
 import yt_dlp
 from pathlib import Path
 
+
 def is_url(s):
     u = urlparse(s)
     return u.scheme in ("http", "https", "ftp") and u.netloc
-def get_video_path(video_input:str) -> str:
+
+
+def get_video_path(video_input: str) -> str:
     if not is_url(video_input):
         if Path(video_input).is_file():
             return video_input
@@ -27,6 +30,7 @@ def get_video_path(video_input:str) -> str:
     except Exception as e:
         raise ValueError(
             "Không thể lấy link video trực tiếp. Có thể video này bị bảo vệ hoặc YouTube vừa thay đổi giao diện.",
-            "Chi tiết lỗi:", e
-        )    
+            "Chi tiết lỗi:",
+            e,
+        )
     return path

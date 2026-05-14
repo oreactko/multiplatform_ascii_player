@@ -1,5 +1,7 @@
 import os
 import py_compile
+
+
 def get_py_files(root="."):
     py_files = []
     root = os.path.abspath(root)
@@ -19,4 +21,4 @@ def get_py_files(root="."):
 
 files = get_py_files()
 for f in files:
-    py_compile.compile(f,doraise=True)
+    py_compile.compile(f, doraise=True)

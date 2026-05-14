@@ -2,10 +2,13 @@ import ffmpeg
 import pyaudio
 import threading
 
+
 def start_audio(video_url):
     # Truyền video dạng bytes vào ffmpeg (stdin), và nhận audio mp3 qua stdout
     probe = ffmpeg.probe(video_url)
-    audio_stream = next((s for s in probe["streams"] if s["codec_type"] == "audio"), None)
+    audio_stream = next(
+        (s for s in probe["streams"] if s["codec_type"] == "audio"), None
+    )
     if audio_stream is None:
         raise ValueError("No audio stream found in video")
 

@@ -5,7 +5,8 @@ from cli import *
 from core.audio import start_audio
 from core.renderer import render_image
 import time
-args=parse_args()
+
+args = parse_args()
 video_path = get_video_path(args.vid)
 cap, fps = open_video(video_path)
 if args.audio:
@@ -35,7 +36,9 @@ try:
             invert=args.invert,
             block=args.block,
             color=args.color,
-            only_char=args.only_char
+            only_char=args.only_char,
+            square=args.square,
+            size=args.size,
         )
         draw_frame(ascii_art, term_width, term_height)
 except KeyboardInterrupt:
