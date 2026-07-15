@@ -33,7 +33,7 @@ def render_image(
     target_height = max(1, int(aspect_ratio * target_width / correction))
 
     # Choose interpolation method: INTER_NEAREST for pixel-perfect zoom, INTER_AREA for downsampling
-    interpolation = cv2.INTER_NEAREST if square or target_width > frame.shape[1] else cv2.INTER_AREA
+    interpolation = cv2.INTER_NEAREST
 
     if color:
         # For color mode, always use solid block "█" with colors, no need for grayscale
