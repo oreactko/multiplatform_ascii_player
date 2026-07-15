@@ -1,4 +1,0 @@
-opencv-python
-yt-dlp
-ffmpeg-python
-PyAudio
