@@ -32,10 +32,13 @@ def render_image(
     target_width = max(1, target_width)
     target_height = max(1, int(aspect_ratio * target_width / correction))
 
+    # Choose interpolation method: INTER_NEAREST for pixel-perfect zoom, INTER_AREA for downsampling
+    interpolation = cv2.INTER_NEAREST if square or target_width > frame.shape[1] else cv2.INTER_AREA
+
     if color:
         # For color mode, always use solid block "█" with colors, no need for grayscale
         resized_color = cv2.resize(
-            frame, (target_width, target_height), interpolation=cv2.INTER_AREA
+            frame, (target_width, target_height), interpolation=interpolation
         )
         block = only_char[0] if only_char else "█"
         block = block * double  # Repeat character for square pixels if needed
@@ -59,7 +62,7 @@ def render_image(
         else:
             ascii_chars = default_chars
         resized_gray = cv2.resize(
-            gray, (target_width, target_height), interpolation=cv2.INTER_AREA
+            gray, (target_width, target_height), interpolation=interpolation
         )
 
         # Vectorized ASCII character mapping using numpy
